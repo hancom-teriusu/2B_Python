@@ -1,4 +1,6 @@
 import sys
+from collections import defaultdict
+
 sys.stdin = open('input.txt')
 input = sys.stdin.readline
 
@@ -6,11 +8,12 @@ n = int(input())
 A = [input().strip() for _ in range(n)]
 
 ################# hash table 등록 ######################
-htab = [[] for _ in range(2**16)]
+htab = [[] for _ in range(2**9)]
+#htab = defaultdict(list)
 def gethash(arr, x, y):
     hash = 0
-    for i in range(4):
-        for j in range(4):
+    for i in range(3):
+        for j in range(3):
             hash = hash * 2 + int(arr[x+i][y+j]=='+')
     return hash
 

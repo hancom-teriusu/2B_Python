@@ -1,0 +1,13 @@
+1 100
+17
+cap_bob_foz_bobob
+8
+100 box
+100 fox
+100 fog
+300 0 10 2
+200 box
+200 fog
+100 cab
+300 0 10 3
+cab_fox_fox_bobob

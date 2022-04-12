@@ -36,4 +36,4 @@ if __name__ == '__main__':
     MARK = int(inputarray[1])
     for testcase in range(1, TC + 1):
         score = MARK if run() else 0
-        print("#%d %d" % (testc
+        print("#%d %d" % (testcase, score))

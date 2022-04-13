@@ -3,24 +3,19 @@
 from heapq import heappush, heappop
 from typing import List
 
-userXY = []
 class Cafe:
     def __init__(self, dist):
         self.myOrder = 0
         self.totOrder = 0
         self.dist = dist
-global pq, buddy, user
-n = 0
 
 def init(N: int, px: List[int], py: List[int]) -> None:
-    global n, buddy, user, pq
+    global n, buddy, user, pq, userXY
     n = N
     buddy = [[] for _ in range(n)]
     pq = [[] for _ in range(n)]
     user = [{} for _ in range(n)]
-    userXY.clear()
-    for x, y in zip(px, py):
-        userXY.append((x,y))
+    userXY = list(zip(px, py))
 
 def addCafe(cid: int, x: int, y: int) -> None:
     for i in range(n):

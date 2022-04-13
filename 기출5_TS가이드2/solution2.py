@@ -3,24 +3,19 @@
 from heapq import heappush, heappop
 from typing import List
 
-userXY = []
 class Cafe:
     def __init__(self, dist):
         self.myOrder = 0
         self.totOrder = 0
         self.dist = dist
-global pq, buddy, user
-n = 0
 
 def init(N: int, px: List[int], py: List[int]) -> None:
-    global n, buddy, user, pq
+    global n, buddy, user, pq, userXY
     n = N
     buddy = [[] for _ in range(n)]
     pq = [[] for _ in range(n)]
     user = [{} for _ in range(n)]
-    userXY.clear()
-    for x, y in zip(px, py):
-        userXY.append((x,y))
+    userXY = list(zip(px, py))
 
 def push(uid, cid):
     heappush(pq[uid], (-user[uid][cid].totOrder, user[uid][cid].dist, cid))
@@ -56,8 +51,9 @@ def beBuddy(tid: int, uid: int) -> None:
 def recommend(uid: int) -> int:
     best = []
     while len(best) < 10:
-        cnt, dist, cid = map(abs,heappop(pq[uid]))
-        if cid not in user[uid] or cnt != user[uid][cid].totOrder: continue
-        best.append((-cnt,dist,cid))
+        cnt, dist, cid = heappop(pq[uid])
+        if cid not in user[uid] or abs(cnt) != user[uid][cid].totOrder: continue
+        # 중복처리는 안함 : {uid, cid} cnt가 동일한데 push되는 경우는 없음
+        best.append((cnt,dist,cid))
     for data in best: heappush(pq[uid], data)
     return best[9][2]

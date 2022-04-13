@@ -44,7 +44,9 @@ def beBuddy(tid: int, uid: int) -> None:
 
 def recommend(uid: int) -> int:
     #1
-    return nlargest(10,user[uid].keys(),key=lambda x: (user[uid][x].totOrder, -user[uid][x].dist, -x))[9]
+    #return nlargest(10,user[uid].keys(),key=lambda cid: (user[uid][cid].totOrder, -user[uid][cid].dist, -cid))[9]
+
+    #return nlargest(10,user[uid].items(), key = lambda d: (d[1].totOrder, -d[1].dist, -d[0]))[9][0]
 
     #2
     # 1) 주문 많은순   2) 거리 짧은순   3) cid 작은순
